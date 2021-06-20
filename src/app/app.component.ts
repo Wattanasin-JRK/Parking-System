@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from './services/app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Car-System';
+  title = 'Parking-System';
+  constructor(private app: AppService) {
+  }
+
+  /** ดึงข้อมูล Loading page */
+  get loading() { return this.app.getLoading; }
 }

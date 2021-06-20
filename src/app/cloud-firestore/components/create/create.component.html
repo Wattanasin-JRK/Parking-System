@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <mat-card>
+            <mat-card-title class="py-2">
+                <mat-icon>add</mat-icon> Add new product
+            </mat-card-title>
+            <mat-divider></mat-divider>
+
+            <mat-card-content class="p-3">
+                <form [formGroup]="form" (submit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <mat-form-field class="d-block mb-2">
+                                <mat-label>Product name</mat-label>
+                                <input type="text" matInput formControlName="name" required>
+                                <mat-error *ngIf="form.get('name')!.hasError('required')">
+                                    The field is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <mat-form-field class="d-block mb-2">
+                                <mat-label>Product qty</mat-label>
+                                <input type="number" matInput formControlName="qty" required>
+                                <mat-error *ngIf="form.get('qty')!.hasError('required')">
+                                    The field is required
+                                </mat-error>
+                                <mat-error *ngIf="form.get('qty')!.hasError('min')">
+                                    Enter number must be greater than or equal to 0
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <mat-form-field class="d-block mb-2">
+                                <mat-label>Product unit</mat-label>
+                                <mat-select formControlName="unit" required>
+                                    <mat-option [value]="item" *ngFor="let item of unitItems">
+                                        {{ item }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="form.get('unit')!.hasError('required')">
+                                    The field is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <mat-form-field class="d-block mb-2">
+                                <mat-label>Product price</mat-label>
+                                <input type="number" matInput formControlName="price" required>
+                                <mat-error *ngIf="form.get('price')!.hasError('required')">
+                                    The field is required
+                                </mat-error>
+                                <mat-error *ngIf="form.get('price')!.hasError('min')">
+                                    Enter number must be greater than or equal to 0
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <mat-form-field class="d-block mb-2">
+                                <mat-label>Product description</mat-label>
+                                <textarea matInput formControlName="description"></textarea>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <button (click)="inputFile.click()" type="button" mat-stroked-button class="w-100">
+                                <mat-icon>image</mat-icon> Upload Image
+                            </button>
+                            <input (change)="onChangeFile(inputFile)" type="file" #inputFile hidden>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <img [src]="getFileUpload" onerror="this.src='./assets/images/no-image.jpg'"
+                                class="img-upload">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-6">
+                            <button type="button" mat-button class="w-100" routerLink="/cloud-firestore">
+                                <mat-icon>view_list</mat-icon> Go to list
+                            </button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button mat-raised-button color="primary" class="w-100">
+                                <mat-icon>save</mat-icon> Save product
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

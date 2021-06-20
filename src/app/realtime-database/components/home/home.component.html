@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <mat-card>
+            <mat-card-title class="mb-3">
+                Realtime Messageing
+            </mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-card-content class="p-3">
+                <form class="row" [formGroup]="form" (submit)="onSubmit(f)" #f="ngForm">
+                    <div class="col-lg-9">
+                        <mat-form-field class="d-block">
+                            <mat-label>Enter message</mat-label>
+                            <input type="text" matInput formControlName="message">
+                            <mat-error *ngIf="form.get('message')!.hasError('required')">
+                                The field is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="submit" mat-raised-button color="primary" class="w-100">
+                            Send messsage
+                        </button>
+                    </div>
+                </form>
+
+                <mat-list>
+                    <div mat-subheader class="p-0">
+                        <mat-icon class="mr-2">speaker_notes</mat-icon> Messages
+                    </div>
+                    <mat-divider></mat-divider>
+
+                    <mat-list-item *ngFor="let item of items">
+                        <mat-icon mat-list-icon>account_box</mat-icon>
+
+                        <div *ngIf="!item.active" mat-line>{{ item.message }}</div>
+                        <small *ngIf="!item.active" mat-line>{{ item.email }}</small>
+
+                        <div mat-line *ngIf="item.active">
+                            <mat-form-field>
+                                <input type="text" matInput [ngModel]="item.message" #model="ngModel" required>
+                            </mat-form-field>
+                            <button class="ml-2" mat-raised-button color="primary" type="button"
+                                (click)="onEdit(item, model)">
+                                save
+                            </button>
+                            <button class="ml-2" mat-raised-button type="button" (click)="item.active = false">
+                                close
+                            </button>
+                        </div>
+
+                        <button type="button" mat-icon-button (click)="onShowEdit(item)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button type="button" mat-icon-button color="warn" (click)="onDelete(item)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

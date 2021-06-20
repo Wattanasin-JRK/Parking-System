@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '/node_modules/bootstrap/scss/functions';
 @import '/node_modules/bootstrap/scss/variables';
 @import '/node_modules/bootstrap/scss/mixins';
 @import '/node_modules/bootstrap/scss/reboot';
-@import '/node_modules/bootstrap/scss/utilities/';
+@import '/node_modules/bootstrap/scss/utilities';
 @import '/node_modules/bootstrap/scss/grid';
 
 html,
@@ -14,5 +15,14 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #fbf6ff;
+    background-color: #f0f0f4;
+
+    .mat-raised-button,
+    .mat-card {
+        border-radius: 0.1rem;
+    }
+}
+
+.material-icons {
+    vertical-align: middle;
 }

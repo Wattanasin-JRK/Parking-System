@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <mat-card>
+            <mat-card-content class="text-center">
+                <mat-card-title>
+                    <mat-icon style="vertical-align: bottom;">create_new_folder</mat-icon> Upload Images
+                </mat-card-title>
+
+                <div class="form-group">
+                    <mat-form-field class="w-75">
+                        <mat-label>Choose file upload</mat-label>
+                        <mat-chip-list #chipList>
+                            <mat-chip *ngFor="let item of fileItems; let index = index" (removed)="onRemoveFile(index)">
+                                {{ item.name }}
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <input type="text" *ngIf="fileItems.length <= 0" disabled matInput>
+                        </mat-chip-list>
+                    </mat-form-field>
+
+                    <button (click)="inputFile.click()" type="button" mat-mini-fab color="primary">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+                </div>
+
+                <input (change)="onChangeFile(inputFile)" type="file" accept="image/*" multiple hidden #inputFile>
+
+                <button (click)="onUploadFile()" type="submit" mat-raised-button color="primary" class="w-50">
+                    <mat-icon>upload</mat-icon> Upload
+                </button>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-lg-3 mb-4" *ngFor="let item of listImageItems; let index = index">
+        <mat-card class="text-center">
+            <mat-card-subtitle>{{ item.name }}</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <img [src]="item.url" mat-card-image [alt]="item.name">
+            <button mat-mini-fab color="warn" (click)="onDeleteFile(item, index)">
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </mat-card>
+    </div>
+</div>

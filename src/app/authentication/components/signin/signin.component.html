@@ -1,0 +1,49 @@
+<div class="row mt-4">
+    <div class="col-lg-6 offset-lg-3">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <mat-card>
+
+                    <h3>
+                        <mat-icon>lock_open</mat-icon> Sign In
+                    </h3>
+
+                    <form class="px-3 pb-3" [formGroup]="form" (submit)="onSubmit()">
+                        <mat-form-field class="d-block">
+                            <mat-label>Enter email</mat-label>
+                            <input matInput placeholder="ที่อยู่อีเมล์" formControlName="email" required>
+                            <mat-error *ngIf="form.get('email')!.hasError('required')">
+                                The field is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="d-block">
+                            <mat-label>Enter password</mat-label>
+                            <input type="password" matInput placeholder="รหัสผ่าน" formControlName="password" required>
+                            <mat-error *ngIf="form.get('password')!.hasError('required')">
+                                The field is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <button type="submit" class="mt-2 mb-2 w-100" mat-raised-button color="primary">
+                            SIGN IN
+                        </button>
+
+                        <button type="button" class="mb-2 w-100" mat-raised-button color="warn"
+                            (click)="onSigninWithGmail()">
+                            Sign in with Gmail
+                        </button>
+
+                        <a routerLink="/authentication/forgot-password" class="d-block text-center mb-2">
+                            Forgot password
+                        </a>
+
+                        <div class="text-center">
+                            You Don't have account? <a routerLink="/authentication/signup">sign up</a>
+                        </div>
+                    </form>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

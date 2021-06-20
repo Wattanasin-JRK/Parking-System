@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment';
 import { SharedsModule } from './shareds/shareds.module';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -16,8 +16,9 @@ import { SharedsModule } from './shareds/shareds.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    SharedsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    SharedsModule
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Action } from 'rxjs/internal/scheduler/Action';
 import { AppService } from 'src/app/services/app.service';
 
 @Component({
@@ -10,13 +8,8 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private app: AppService) {}
+  constructor(private app: AppService) { }
 
   ngOnInit(): void {
   }
-
-  dialog(message: string){
-    this.app.dialog(message)
-  }
-
 }

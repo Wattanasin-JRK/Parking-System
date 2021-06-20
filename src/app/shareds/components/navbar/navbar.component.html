@@ -1,23 +1,27 @@
 <mat-toolbar color="primary">
     <div class="container">
         <div class="d-flex">
-            <a class="brand-link" (click)="dialog('ทดสอบการแจ้งเตือน')">
+            <a routerLink="/" class="brand-link center">
                 <mat-icon>directions_car_filled</mat-icon>
                 <span>Car Parking System</span>
             </a>
+
             <div class="nav-menu ml-auto">
-                <a href="" class="mr-4">
-                    <mat-icon>local_parking</mat-icon> Authentication
+                <a routerLink="/cloud-firestore" class="mr-4" routerLinkActive="active">
+                    <mat-icon>local_parking</mat-icon>Firestore Database
                 </a>
-                <a href="" class="mr-4">
-                    <mat-icon>perm_contact_calendar</mat-icon>Firestore Database
-                </a>
-                <a href="" class="mr-4">
+                <a routerLink="/realtime-database" class="mr-4" routerLinkActive="active">
                     <mat-icon>date_range</mat-icon>Realtime Database
                 </a>
-                <a href="">
+                <a routerLink="/storage" class="mr-4" routerLinkActive="active">
                     <mat-icon>pending_actions</mat-icon>Storage
                 </a>
+                <a routerLink="/authentication" class="mr-4" routerLinkActive="active">
+                    <mat-icon>perm_contact_calendar</mat-icon> Authentication
+                </a>
+                <button type="submit" class="mt-2 mb-3 w-5" mat-raised-button color="warn">
+                    Login
+                </button>
             </div>
         </div>
     </div>

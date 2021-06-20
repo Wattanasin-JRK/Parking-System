@@ -1,0 +1,55 @@
+<div class="row mt-4">
+    <div class="col-lg-6 offset-lg-3">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <mat-card>
+
+                    <h3>
+                        <mat-icon>lock_open</mat-icon> Sign Up
+                    </h3>
+
+                    <form class="px-3 pb-3" [formGroup]="form" (submit)="onSubmit()">
+                        <mat-form-field class="d-block">
+                            <mat-label>Enter email</mat-label>
+                            <input matInput placeholder="ที่อยู่อีเมล์" formControlName="email" required>
+                            <mat-error *ngIf="form.get('email')!.hasError('required')">
+                                The field is required
+                            </mat-error>
+                            <mat-error *ngIf="form.get('email')!.hasError('email')">
+                                The field is email address
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="d-block">
+                            <mat-label>Enter password</mat-label>
+                            <input type="password" matInput placeholder="รหัสผ่าน" formControlName="password" required>
+                            <mat-error *ngIf="form.get('password')!.hasError('required')">
+                                The field is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="d-block">
+                            <mat-label>Enter confirm password</mat-label>
+                            <input type="password" matInput placeholder="ยืนยันรหัสผ่าน" formControlName="cpassword"
+                                required>
+                            <mat-error *ngIf="form.get('cpassword')!.hasError('required')">
+                                The field is required
+                            </mat-error>
+                            <mat-error *ngIf="form.get('cpassword')!.hasError('notComparePassword')">
+                                The confirm password is not match password
+                            </mat-error>
+                        </mat-form-field>
+
+                        <button type="submit" class="mt-2 mb-3 w-100" mat-raised-button color="primary">
+                            SIGN UP
+                        </button>
+
+                        <div class="text-center">
+                            Do you have account? <a routerLink="/authentication/signin">sign in</a>
+                        </div>
+                    </form>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

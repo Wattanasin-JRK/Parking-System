@@ -1,20 +1,24 @@
 a {
-    color: white;
     cursor: pointer;
+    color: white;
+
     &.brand-link {
         text-decoration: none;
+        font-weight: 400;
+        font-size: 16px;
     }
 }
 
 .nav-menu {
     a {
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.5);
         text-decoration: none;
         font-weight: 400;
-        font-size: 18px;
-        transition: all 0.1s ease-in;
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
 
-        &:hover{
+        &:hover,
+        &.active {
             color: white;
         }
     }
