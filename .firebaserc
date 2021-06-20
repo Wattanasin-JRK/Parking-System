@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "carparkingmana": {
+      "hosting": {
+        "Car-System": [
+          "carparkingmana"
+        ]
+      }
+    }
+  }
+}
