@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Car-System';
-  options: string[] = ['One', 'Two', 'Three'];
 }
