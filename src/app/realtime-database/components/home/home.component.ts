@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private app: AppService,
     private det: ChangeDetectorRef
   ) {
-    this.messagingRef = this.db.list('/messageing');
+    this.messagingRef = this.db.list('/LicenseDB');
     this.loadData();
     this.createForm();
   }
@@ -50,14 +50,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.form.invalid) return;
     const data = {
       ...this.form.value,
-      created: new Date().getTime(),
-      updated: new Date().getTime()
+      // created: new Date().getTime(),
+      // updated: new Date().getTime()
     };
     this.app.loading(true);
     this.messagingRef.push(data)
       .then(() => {
         this.app.dialog('Successfully');
-        this.form.controls['message'].reset();
+        this.form.controls['licenseP'].reset();
         f.resetForm(this.form.value);
       })
       .catch(error => this.app.dialog(error.message))
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.app.loading(true);
     this.messagingRef
       .update(item.id, {
-        message: model.value,
+        licenseP: model.value,
         updated: new Date().getTime()
       })
       .then(() => {
@@ -121,8 +121,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const userLogin = await this.auth.currentUser;
     if (!userLogin) return;
     this.form = this.fb.group({
-      email: [userLogin.email],
-      message: ['', Validators.required]
+      // email: [userLogin.email],
+      licenseP: ['', Validators.required]
     });
   }
 }

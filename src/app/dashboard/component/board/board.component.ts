@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { single } from './data';
-
+// import { Refer } from './Ref';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -9,7 +12,7 @@ import { single } from './data';
 })
 export class BoardComponent implements OnInit {
   single: any;
-  view: any = [700, 400];
+  view: any = [1600, 300];
 
   // options
   gradient: boolean = true;
@@ -21,10 +24,11 @@ export class BoardComponent implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor() {
+  constructor(    
+    private db: AngularFireDatabase,
+    private det: ChangeDetectorRef) {
     Object.assign(this, { single });
   }
-
   
   onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
@@ -37,8 +41,27 @@ export class BoardComponent implements OnInit {
   onDeactivate(data: any): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
+
   ngOnInit(): void {
   }
 
   
 }
+
+// export class BoardComponent {
+//   itemRef: AngularFireObject<any>;
+//   item: Observable<any>;
+//   constructor(db: AngularFireDatabase) {
+//     this.itemRef = db.object('item');
+//     this.item = this.itemRef.valueChanges();
+//   }
+//   save(newName: string) {
+//     this.itemRef.set({ name: newName });
+//   }
+//   update(newSize: string) {
+//     this.itemRef.update({ size: newSize });
+//   }
+//   delete() {
+//     this.itemRef.remove();
+//   }
+// }

@@ -5,6 +5,6 @@ export var single = [
     },
     {
       "name": "ช่องจอดรถที่ไม่ว่าง",
-      "value": 1
+      "value": 0
     }
   ];

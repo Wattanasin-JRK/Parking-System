@@ -1,7 +1,7 @@
 export interface IMessaging {
     id: any;
     email: string;
-    message: string;
+    licenseP: string;
     created: number;
     updated: number;
 
