@@ -6,7 +6,7 @@ import { BoardComponent } from './component/board/board.component';
 const routes: Routes = [
   {
     path: '', component: BoardComponent,
-    canActivate: [AngularFireAuthGuard]
+    // canActivate: [AngularFireAuthGuard]
   }
 ];
 
