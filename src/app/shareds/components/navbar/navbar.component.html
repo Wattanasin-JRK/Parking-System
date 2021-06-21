@@ -1,27 +1,30 @@
 <mat-toolbar color="primary">
     <div class="container">
         <div class="d-flex">
-            <a routerLink="/" class="brand-link center">
+            <a routerLink="/dashboard" class="brand-link ">
                 <mat-icon>directions_car_filled</mat-icon>
                 <span>Car Parking System</span>
             </a>
 
             <div class="nav-menu ml-auto">
-                <a routerLink="/cloud-firestore" class="mr-4" routerLinkActive="active">
+                <!-- <a routerLink="/cloud-firestore" class="mr-4" routerLinkActive="active">
                     <mat-icon>local_parking</mat-icon>Firestore Database
-                </a>
+                </a> -->
                 <a routerLink="/realtime-database" class="mr-4" routerLinkActive="active">
                     <mat-icon>date_range</mat-icon>Realtime Database
                 </a>
-                <a routerLink="/storage" class="mr-4" routerLinkActive="active">
+                <!-- <a routerLink="/storage" class="mr-4" routerLinkActive="active">
                     <mat-icon>pending_actions</mat-icon>Storage
-                </a>
+                </a> -->
                 <a routerLink="/authentication" class="mr-4" routerLinkActive="active">
-                    <mat-icon>perm_contact_calendar</mat-icon> Authentication
+                    <mat-icon>perm_contact_calendar</mat-icon> Personal Information
                 </a>
-                <button type="submit" class="mt-2 mb-3 w-5" mat-raised-button color="warn">
-                    Login
-                </button>
+                <!-- <a routerLink="/authentication" class="mr-4" routerLinkActive="active">
+                    <button type="submit" class="mt-2 mb-3 w-5" mat-raised-button color="warn">
+                        Login
+                    </button>
+                </a> -->
+
             </div>
         </div>
     </div>

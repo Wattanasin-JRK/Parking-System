@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
-export interface IProduct {
+export interface IProduct 
+{
     index: number;
     id: string;
     name: string;

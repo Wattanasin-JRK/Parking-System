@@ -45,7 +45,8 @@ export class SigninComponent implements OnInit {
     this.app.loading(true);
     this.auth
       .signInWithEmailAndPassword(email, password)
-      .then(() => this.router.navigate(['/']))
+      .then(() => 
+      this.router.navigate(['/']))
       .catch(error => this.app.dialog(error.message))
       .finally(() => this.app.loading(false));
   }
