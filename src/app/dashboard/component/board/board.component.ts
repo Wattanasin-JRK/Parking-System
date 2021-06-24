@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { CarStats } from './data';
 import { AppService } from 'src/app/services/app.service';
@@ -19,6 +19,7 @@ export class BoardComponent implements OnInit {
   form!: FormGroup;
   loadSubscription!: Subscription;
   panelOpenState = false;
+  IR = 0;
 
   // options
   gradient: boolean = true;
@@ -47,6 +48,9 @@ export class BoardComponent implements OnInit {
     if (this.loadSubscription)
       this.loadSubscription.unsubscribe();
   }
+  ngAfterContentChecked() {
+    this.det.detectChanges();
+}
     /** โหลดข้อมูลครั้งแรก */
     private loadData() {
       this.loadSubscription = this.CarRef.snapshotChanges().subscribe(res => {
@@ -65,4 +69,9 @@ export class BoardComponent implements OnInit {
       // licenseP: ['', Validators.required]
     });
   }
+
+  async getCount(num: number) {
+    return this.IR = this.itemS.filter(o => o.num === num).length;
+  }
+
 }

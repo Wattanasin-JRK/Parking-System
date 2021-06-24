@@ -9,18 +9,22 @@
 </section> -->
 
 <mat-accordion>
-    <mat-expansion-panel hideToggle  *ngFor="let item of itemS; ; let i = index">
+
+    <mat-expansion-panel hideToggle *ngFor="let item of itemS">
         <mat-expansion-panel-header>
-            <mat-panel-title >
+            <mat-panel-title>
                 ช่องจอดรถยนต์ {{ item.id }}
             </mat-panel-title>
             <mat-panel-description *ngIf="item.num ==0">
-                สถานะช่องจอดรถ : ว่าง
+                สถานะช่องจอดรถ : ว่าง 
             </mat-panel-description>
             <mat-panel-description *ngIf="item.num ==1">
-                สถานะช่องจอดรถ : ไม่ว่าง
+                สถานะช่องจอดรถ : ไม่ว่าง <div class=visibility: hidden>{{getCount(1)}}</div>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>_</p>
+        <p></p>
     </mat-expansion-panel>
 </mat-accordion>
+<div>
+    {{IR}}/64
+</div>
