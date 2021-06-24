@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { single } from './data';
-// import { Refer } from './Ref';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { Observable } from 'rxjs';
+import { CarStats } from './data';
+import { AppService } from 'src/app/services/app.service';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgModel, Validators } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-board',
@@ -11,8 +13,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-  single: any;
-  view: any = [1600, 300];
+  // view: any = [1600, 300];
+  CarRef: AngularFireList<CarStats>;
+  itemS : CarStats[] = [];
+  form!: FormGroup;
+  loadSubscription!: Subscription;
+  panelOpenState = false;
 
   // options
   gradient: boolean = true;
@@ -26,42 +32,37 @@ export class BoardComponent implements OnInit {
 
   constructor(    
     private db: AngularFireDatabase,
+    private fb: FormBuilder,
+    private auth: AngularFireAuth,
+    private app: AppService,
     private det: ChangeDetectorRef) {
-    Object.assign(this, { single });
-  }
-  
-  onSelect(data: any): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-  onActivate(data: any): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data: any): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+    this.CarRef = this.db.list('/carcheck');
+    this.loadData();
+    this.createForm();
   }
 
   ngOnInit(): void {
   }
+  ngOnDestroy() {
+    if (this.loadSubscription)
+      this.loadSubscription.unsubscribe();
+  }
+    /** โหลดข้อมูลครั้งแรก */
+    private loadData() {
+      this.loadSubscription = this.CarRef.snapshotChanges().subscribe(res => {
+        this.itemS = res.map(itemS => {
+          return { id: itemS.key, ...itemS.payload.val() } as CarStats;
+        }).sort((a, b) => b.created - a.created);
+      });
+    }
 
-  
+      /** สร้างฟอร์มข้อมูล */
+  private async createForm() {
+    const userLogin = await this.auth.currentUser;
+    if (!userLogin) return;
+    this.form = this.fb.group({
+      // email: [userLogin.email],
+      // licenseP: ['', Validators.required]
+    });
+  }
 }
-
-// export class BoardComponent {
-//   itemRef: AngularFireObject<any>;
-//   item: Observable<any>;
-//   constructor(db: AngularFireDatabase) {
-//     this.itemRef = db.object('item');
-//     this.item = this.itemRef.valueChanges();
-//   }
-//   save(newName: string) {
-//     this.itemRef.set({ name: newName });
-//   }
-//   update(newSize: string) {
-//     this.itemRef.update({ size: newSize });
-//   }
-//   delete() {
-//     this.itemRef.remove();
-//   }
-// }

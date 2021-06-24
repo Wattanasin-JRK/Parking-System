@@ -1,15 +1,26 @@
-<div class="mat-typography">
-    <ngx-charts-advanced-pie-chart
-        [view]="view"
-        [scheme]="colorScheme"
-        [results]="single"
-        [gradient]="gradient"
-        (select)="onSelect($event)"
-        (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)"
-    >
-    </ngx-charts-advanced-pie-chart>
-</div>
+<!-- <section id="Services">
+    <h1>Car in this park.</h1>
+        <div class="row">
+            <mat-list-item *ngFor="let item of itemS">
+                <div *ngIf="!item.active" mat-line>{{ item.id }}</div>
+                <small *ngIf="!item.active" mat-line>{{ item.num }}</small>
+            </mat-list-item>     
+        </div>    
+</section> -->
 
-
-
+<mat-accordion>
+    <mat-expansion-panel hideToggle  *ngFor="let item of itemS; ; let i = index">
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                ช่องจอดรถยนต์ {{ item.id }}
+            </mat-panel-title>
+            <mat-panel-description *ngIf="item.num ==0">
+                สถานะช่องจอดรถ : ว่าง
+            </mat-panel-description>
+            <mat-panel-description *ngIf="item.num ==1">
+                สถานะช่องจอดรถ : ไม่ว่าง
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>_</p>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -1,10 +1,10 @@
-export var single = [
-    {
-      "name": "ช่องจอดรถที่ว่าง",
-      "value": 1
-    },
-    {
-      "name": "ช่องจอดรถที่ไม่ว่าง",
-      "value": 0
-    }
-  ];
+export interface CarStats {
+  id?: any;
+  created: number;
+  num : number;
+  Tnum : number;
+  status : string;
+
+  /** optional ไว้แสดงหรือซ่อน Form แก้ไข */
+  active?: boolean;
+}
