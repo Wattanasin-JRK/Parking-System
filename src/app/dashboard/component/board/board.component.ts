@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { CarStats } from './data';
+import { CarStats,Total } from './data';
 import { AppService } from 'src/app/services/app.service';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgModel, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -16,10 +16,13 @@ export class BoardComponent implements OnInit {
   // view: any = [1600, 300];
   CarRef: AngularFireList<CarStats>;
   itemS : CarStats[] = [];
+  TotalRef: AngularFireList<Total>;
+  TTS:Total[] = [];
   form!: FormGroup;
   loadSubscription!: Subscription;
   panelOpenState = false;
-  IR = 0;
+  IR:number = 0;
+  TR:number = 0;
 
   // options
   gradient: boolean = true;
@@ -38,6 +41,7 @@ export class BoardComponent implements OnInit {
     private app: AppService,
     private det: ChangeDetectorRef) {
     this.CarRef = this.db.list('/carcheck');
+    this.TotalRef = this.db.list('/TotalSlot');
     this.loadData();
     this.createForm();
   }
@@ -48,15 +52,24 @@ export class BoardComponent implements OnInit {
     if (this.loadSubscription)
       this.loadSubscription.unsubscribe();
   }
-  ngAfterContentChecked() {
+  ngAfterContentChecked()	{
     this.det.detectChanges();
-}
+  }
+
+
+
     /** โหลดข้อมูลครั้งแรก */
     private loadData() {
       this.loadSubscription = this.CarRef.snapshotChanges().subscribe(res => {
         this.itemS = res.map(itemS => {
           return { id: itemS.key, ...itemS.payload.val() } as CarStats;
         }).sort((a, b) => b.created - a.created);
+        
+      });
+      this.loadSubscription = this.TotalRef.snapshotChanges().subscribe(res => {
+        this.TTS = res.map(TTS => {
+          return { id: TTS.key, ...TTS.payload.val() } as Total;
+        })
       });
     }
 
@@ -70,8 +83,13 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  async getCount(num: number) {
-    return this.IR = this.itemS.filter(o => o.num === num).length;
+ getCount(num: number) {
+      this.IR = this.itemS.filter(o => o.num === num).length;
   }
-
+  onEdit(item: Total, model: number) {
+    this.TotalRef
+      .update(item.id, {
+        Tnum: model
+      })
+  }
 }

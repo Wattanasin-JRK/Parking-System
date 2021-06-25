@@ -1,30 +1,27 @@
-<!-- <section id="Services">
-    <h1>Car in this park.</h1>
-        <div class="row">
-            <mat-list-item *ngFor="let item of itemS">
-                <div *ngIf="!item.active" mat-line>{{ item.id }}</div>
-                <small *ngIf="!item.active" mat-line>{{ item.num }}</small>
-            </mat-list-item>     
-        </div>    
-</section> -->
+<div class="row" >
+    <div class="col-4">
+        <mat-card class="example-card mb-4" *ngFor="let item of TTS">
+                <!-- <div class=visibility: hidden>{{onEdit(item, IR)}}</div> -->
+                <mat-card-title class="Slot">Current Slot {{IR}}/64 </mat-card-title>
+        </mat-card>
+    </div>
+</div>
 
 <mat-accordion>
-
-    <mat-expansion-panel hideToggle *ngFor="let item of itemS">
+    <!-- <mat-expansion-panel hideToggle *ngFor="let item of itemS"> -->
+    <mat-expansion-panel *ngFor="let item of itemS">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 ช่องจอดรถยนต์ {{ item.id }}
             </mat-panel-title>
             <mat-panel-description *ngIf="item.num ==0">
-                สถานะช่องจอดรถ : ว่าง 
+                สถานะช่องจอดรถ : <P class="Empty">ว่าง</P>
             </mat-panel-description>
             <mat-panel-description *ngIf="item.num ==1">
-                สถานะช่องจอดรถ : ไม่ว่าง <div class=visibility: hidden>{{getCount(1)}}</div>
+                สถานะช่องจอดรถ : <P class="NEmpty">ไม่ว่าง</P>
+                <div class=visibility: hidden>{{getCount(1)}}</div>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <p></p>
     </mat-expansion-panel>
 </mat-accordion>
-<div>
-    {{IR}}/64
-</div>
+
